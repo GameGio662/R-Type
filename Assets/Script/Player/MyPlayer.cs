@@ -21,11 +21,17 @@ public class MyPlayer : MonoBehaviour
     [SerializeField] GameObject Fire;
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject Respawn;
-    [SerializeField] Transform Player;
+    [SerializeField] public Transform Player;
     [HideInInspector] public Rigidbody2D rb;
+
+    [Header("other.scrip")]
+    EffectPowerUp ePU;
+
+    
     
     void Start()
     {
+        ePU = FindObjectOfType<EffectPowerUp>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -53,6 +59,7 @@ public class MyPlayer : MonoBehaviour
             {
                 hitCount--;
                 gameObject.transform.position = Respawn.transform.position;
+                ePU.nonToccarmi = true;
             }
         }
         else
@@ -98,6 +105,6 @@ public class MyPlayer : MonoBehaviour
     public void JumpEnemy()
     {
         distancePlayer = gameObject.transform.position.x + transform.position.x;
+       
     }
-   
 }

@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3131479217433498277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.69, y: -1.26, z: 0}
+  m_LocalPosition: {x: -1.074, y: -1.043, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -86,7 +86,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5031422427046373231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.73, y: -1.24, z: 0}
+  m_LocalPosition: {x: -1.062, y: 0.188, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  circleRadius: 0.2
+  circleRadius: 0.5
   groundCheckPoint: {fileID: 2448555603910098951}
   wallCheckPoint: {fileID: 6244371844516880241}
   groundLayer:
@@ -274,8 +274,8 @@ MonoBehaviour:
     m_Bits: 32768
   jumpHaight: 10
   groundCheck: {fileID: 3875637594975977692}
-  boxSize: {x: 1.1, y: 0.22}
-  lineOfSite: {x: 25.62, y: 24.83}
+  boxSize: {x: 1.04, y: 0.22}
+  lineOfSite: {x: 15.4, y: 8.94}
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 16384

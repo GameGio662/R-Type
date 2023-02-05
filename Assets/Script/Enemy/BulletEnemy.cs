@@ -7,13 +7,14 @@ public class BulletEnemy : MonoBehaviour
 {
     MyPlayer mP;
     public float speed = 10;
-
+    EffectPowerUp ePU;
     Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         mP = FindObjectOfType<MyPlayer>();
+        ePU = FindObjectOfType<EffectPowerUp>();
     }
 
     private void Update()
@@ -29,7 +30,7 @@ public class BulletEnemy : MonoBehaviour
         if (collision.gameObject.tag == "wall")
             gameObject.SetActive(false);
 
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && ePU.nonToccarmi == false)
         {
             mP.hitCount = 1;
             mP.health -= 50;

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    MyPlayer mP;
 
     [Header("Ground")]
     [SerializeField] float moveSpeed, circleRadius;
@@ -19,12 +18,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] Vector2 boxSize;
     private bool isGrounded;
+    MyPlayer mP;
 
     [Header("Attack")]
     [SerializeField] Vector2 lineOfSite;
     [SerializeField] LayerMask PlayerLayer;
     private bool cannSeePlayer;
     private float time, timejump;
+    EffectPowerUp ePU;
 
     [Header("Shoot")]
     [SerializeField] GameObject BulletEnemy;
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour
     {
         mP = FindObjectOfType<MyPlayer>();
         rb = GetComponent<Rigidbody2D>();
+        ePU = FindObjectOfType<EffectPowerUp>();
     }
 
     private void Update()
@@ -50,8 +52,8 @@ public class Enemy : MonoBehaviour
 
     void JumpAttack()
     {
-        if (isGrounded && checkingWall)
-            rb.AddForce(new Vector2(mP.distancePlayer, jumpHaight * Time.deltaTime), ForceMode2D.Impulse);
+        if (isGrounded)
+            rb.AddForce(new Vector2(mP.distancePlayer * 10, jumpHaight * Time.deltaTime));
     }
 
     void Petrolling()
@@ -68,15 +70,16 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            mP.hitCount = 1;
-            mP.health -= 50;
-            gameObject.SetActive(false);
-        }
+            if (collision.gameObject.tag == "Player" && ePU.nonToccarmi == false)
+            {
+                mP.hitCount = 1;
+                mP.health -= 50;
+                gameObject.SetActive(false);
+            }
 
-        if (collision.gameObject.tag == "Bullet")
-            gameObject.SetActive(false);   
+            if (collision.gameObject.tag == "Bullet")
+                gameObject.SetActive(false);
+        
     }
 
     private void OnDrawGizmos()
@@ -105,8 +108,11 @@ public class Enemy : MonoBehaviour
 
         if (time >= 3)
         {
-            Shoot();
-            time = 0;
+            if (cannSeePlayer)
+            {
+                Shoot();
+                time = 0;
+            }
         }
     }
 
@@ -115,7 +121,7 @@ public class Enemy : MonoBehaviour
         if (timejump <= 2)
             timejump += 1 * Time.deltaTime;
 
-        if (timejump >= 2)
+        if (timejump >= 2 || checkingWall)
         {
             JumpAttack();
             timejump = 0;

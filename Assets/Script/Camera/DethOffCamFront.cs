@@ -5,18 +5,19 @@ using UnityEngine;
 public class DethOffCamFront : MonoBehaviour
 {
     MyPlayer mP;
+    EffectPowerUp ePU;
     private void Start()
     {
         mP = FindObjectOfType<MyPlayer>();
+        ePU = FindObjectOfType<EffectPowerUp>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && ePU.nonToccarmi == false)
         {
             mP.hitCount = 1;
             mP.health -= 50;
         }
-
     }
 }

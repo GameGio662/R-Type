@@ -155,6 +155,51 @@ Transform:
   m_Father: {fileID: 1979953357}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &80386556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 80386558}
+  - component: {fileID: 80386557}
+  m_Layer: 0
+  m_Name: EffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &80386557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80386556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09382a248afacf74183dbc62e53c6c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonToccarmi: 0
+--- !u!4 &80386558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80386556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.67051, y: -1.719388, z: 8.65527}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &115576075
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 115576076}
   - component: {fileID: 115576077}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Respawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163821712}
   - component: {fileID: 163821713}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +771,7 @@ GameObject:
   - component: {fileID: 519420035}
   - component: {fileID: 519420031}
   - component: {fileID: 519420034}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1136,7 +1181,7 @@ GameObject:
   - component: {fileID: 774872227}
   - component: {fileID: 774872226}
   - component: {fileID: 774872228}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: BackDeath
   m_TagString: Boom
   m_Icon: {fileID: 0}
@@ -1156,7 +1201,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.16841221}
+  m_Offset: {x: -44.212315, y: -0.16841221}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1167,7 +1212,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 8.410145}
+  m_Size: {x: 89.42463, y: 8.410145}
   m_EdgeRadius: 0
 --- !u!4 &774872227
 Transform:
@@ -1206,6 +1251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 835981237}
   - component: {fileID: 835981238}
+  - component: {fileID: 835981239}
   m_Layer: 0
   m_Name: Mash
   m_TagString: Player
@@ -1280,6 +1326,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &835981239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835981236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09382a248afacf74183dbc62e53c6c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonToccarmi: 0
 --- !u!1 &876851243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,7 +1525,7 @@ GameObject:
   - component: {fileID: 1248565229}
   - component: {fileID: 1248565231}
   - component: {fileID: 1248565230}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: FrontDeath
   m_TagString: wall
   m_Icon: {fileID: 0}
@@ -1706,7 +1765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1370375672}
   - component: {fileID: 1370375673}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: EnemySpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2462,7 +2521,7 @@ GameObject:
   - component: {fileID: 2131431799}
   - component: {fileID: 2131431800}
   - component: {fileID: 2131431801}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: FrontDeath
   m_TagString: wall
   m_Icon: {fileID: 0}
@@ -2497,7 +2556,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 8.550213, y: -0.55020607}
+  m_Offset: {x: 47.258915, y: -0.5502062}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2508,7 +2567,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.977993, y: 8.306747}
+  m_Size: {x: 78.39539, y: 8.306747}
   m_EdgeRadius: 0
 --- !u!114 &2131431801
 MonoBehaviour:
