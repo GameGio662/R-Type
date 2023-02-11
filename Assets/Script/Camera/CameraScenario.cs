@@ -6,7 +6,6 @@ public class CameraScenario : MonoBehaviour
 {
 
     float timer;
-    //float cooldown = 3;
     bool stopTimer = false;
     float speedCamera = 1;
     Rigidbody2D rb;
@@ -35,7 +34,7 @@ public class CameraScenario : MonoBehaviour
         }
             if(timer >= 3)
             {
-             rb.velocity = new Vector2(1 * speedCamera, 0);
+              transform.Translate(new Vector2(1 * speedCamera * Time.deltaTime, 0));
              stopTimer = true;
              timer = 4;
             }

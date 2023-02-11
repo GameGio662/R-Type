@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullat : MonoBehaviour
 {
-    float speed = 10;
+    float speed = 20;
     public Rigidbody2D r2D;
 
     private void Start()
@@ -15,17 +15,17 @@ public class Bullat : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "wall")
-            gameObject.SetActive(false);
-        
+            Destroy(gameObject);
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.tag == "wall")
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         if (collision.gameObject.tag == "Enemy")
-            gameObject.SetActive(false);
+            Destroy(gameObject);
     }
 }
 

@@ -21,11 +21,14 @@ public class MyPlayer : MonoBehaviour
     [SerializeField] GameObject Fire;
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject Respawn;
+
+
     [SerializeField] public Transform Player;
     [HideInInspector] public Rigidbody2D rb;
 
     [Header("other.scrip")]
     EffectPowerUp ePU;
+    UIManager UI;
 
     
     
@@ -33,6 +36,7 @@ public class MyPlayer : MonoBehaviour
     {
         ePU = FindObjectOfType<EffectPowerUp>();
         rb = GetComponent<Rigidbody2D>();
+        UI = FindObjectOfType<UIManager>();
     }
 
    
@@ -53,20 +57,15 @@ public class MyPlayer : MonoBehaviour
 
     public void DeathPlayaer()
     {
-        if(health > 0)
-        {
             if(hitCount == 1)
             {
-                hitCount--;
+                UI.Hpcount++;
                 gameObject.transform.position = Respawn.transform.position;
                 ePU.nonToccarmi = true;
+                hitCount--;
             }
-        }
-        else
-        {
+         if(health == 0)
                 gameObject.SetActive(false);
-        }
-        
     }
 
 

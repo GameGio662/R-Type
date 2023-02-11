@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -11,28 +12,36 @@ public class Enemy : MonoBehaviour
     private bool checkingGround, checkingWall;
     [SerializeField] Transform groundCheckPoint, wallCheckPoint;
     [SerializeField] LayerMask groundLayer;
-    Rigidbody2D rb;
+    
 
     [Header("jump")]
     [SerializeField] float jumpHaight;
     [SerializeField] Transform groundCheck;
     [SerializeField] Vector2 boxSize;
     private bool isGrounded;
-    MyPlayer mP;
+    
 
     [Header("Attack")]
     [SerializeField] Vector2 lineOfSite;
     [SerializeField] LayerMask PlayerLayer;
     private bool cannSeePlayer;
     private float time, timejump;
-    EffectPowerUp ePU;
+   
 
     [Header("Shoot")]
     [SerializeField] GameObject BulletEnemy;
     [SerializeField] GameObject fire;
-    
+
+    TimeManager tM;
+    MyPlayer mP;
+    UIManager UI;
+    EffectPowerUp ePU;
+    Rigidbody2D rb;
+
     private void Start()
     {
+        tM = FindObjectOfType<TimeManager>();
+        UI = FindObjectOfType<UIManager>();
         mP = FindObjectOfType<MyPlayer>();
         rb = GetComponent<Rigidbody2D>();
         ePU = FindObjectOfType<EffectPowerUp>();
@@ -40,20 +49,24 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        Physics();
+        TimerShoot();
+        TimerJump();
+        Petrolling();
+        EnemyDespawn();
+    }
+
+    private void Physics()
+    {
         checkingGround = Physics2D.OverlapCircle(groundCheckPoint.position, circleRadius, groundLayer);
         checkingWall = Physics2D.OverlapCircle(wallCheckPoint.position, circleRadius, groundLayer);
         isGrounded = Physics2D.OverlapBox(groundCheck.position, boxSize, 0, groundLayer);
         cannSeePlayer = Physics2D.OverlapBox(transform.position, lineOfSite, 0, PlayerLayer);
-        TimerShoot();
-        TimerJump();
-        Petrolling();
-        
     }
-
     void JumpAttack()
     {
         if (isGrounded)
-            rb.AddForce(new Vector2(mP.distancePlayer * 10, jumpHaight * Time.deltaTime));
+            rb.AddForce(new Vector2(-5 * Time.deltaTime, jumpHaight * Time.deltaTime));
     }
 
     void Petrolling()
@@ -65,21 +78,24 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Boom"))
-            gameObject.SetActive(false);
+            Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-            if (collision.gameObject.tag == "Player" && ePU.nonToccarmi == false)
-            {
-                mP.hitCount = 1;
-                mP.health -= 50;
-                gameObject.SetActive(false);
-            }
+        if (collision.gameObject.tag == "Player" && ePU.nonToccarmi == false)
+        {
+            mP.hitCount = 1;
+            mP.health -= 50;
+            Destroy(gameObject);
+        }
 
-            if (collision.gameObject.tag == "Bullet")
-                gameObject.SetActive(false);
-        
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Destroy(gameObject);
+            UI.enemyPunt += 50;
+        }
+
     }
 
     private void OnDrawGizmos()
@@ -125,6 +141,14 @@ public class Enemy : MonoBehaviour
         {
             JumpAttack();
             timejump = 0;
+        }
+    }
+
+    public void EnemyDespawn()
+    {
+        if(tM.stopTime == true)
+        {
+            gameObject.SetActive(false);
         }
     }
 }

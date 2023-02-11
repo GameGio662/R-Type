@@ -25,16 +25,16 @@ public class BulletEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Boom")
-            gameObject.SetActive(false);
+            Destroy(gameObject);
 
         if (collision.gameObject.tag == "wall")
-            gameObject.SetActive(false);
+            Destroy(gameObject);
 
         if (collision.CompareTag("Player") && ePU.nonToccarmi == false)
         {
             mP.hitCount = 1;
             mP.health -= 50;
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 

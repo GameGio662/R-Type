@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    [SerializeField] float cooldown = 60;
-    float time;
-    bool stopTime = false;
+    float cooldown = 50;
+    public float time;
+   [HideInInspector] public bool stopTime = false;
 
     void Start()
     {
@@ -28,10 +28,8 @@ public class TimeManager : MonoBehaviour
 
             if (time <= 0)
             {
-                Debug.Log("sono gay");
                 time = 0;
                 stopTime = true;
-
             }
         }
 

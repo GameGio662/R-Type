@@ -11,15 +11,20 @@ public class EnemyRespawn : MonoBehaviour
     [Header("timer")]
     public float timer = 2.5f;
 
+    TimeManager tM;
+
     private void Start()
     {
-       
+        tM = FindObjectOfType<TimeManager>();
     }
 
     private void Update()
     {
+        if(tM.stopTime == false)
+        {
         SpawnTimer();
         Spawn();
+        }
     }
 
     public void Spawn()
