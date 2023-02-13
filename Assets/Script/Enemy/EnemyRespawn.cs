@@ -11,25 +11,25 @@ public class EnemyRespawn : MonoBehaviour
     [Header("timer")]
     public float timer = 2.5f;
 
-    TimeManager tM;
+    GameManager GM;
 
     private void Start()
     {
-        tM = FindObjectOfType<TimeManager>();
+        GM = FindObjectOfType<GameManager>();
     }
 
     private void Update()
     {
-        if(tM.stopTime == false)
+        if (GM.gameStatus == GameManager.GameStatus.gameRunning)
         {
-        SpawnTimer();
-        Spawn();
+            SpawnTimer();
+            Spawn();
         }
     }
 
     public void Spawn()
     {
-        if (timer <= 0 )
+        if (timer <= 0)
         {
             GameObject enemy1 = Instantiate(Enemy1);
             enemy1.transform.position = gameObject.transform.position;

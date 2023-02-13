@@ -23,28 +23,38 @@ public class MyPlayer : MonoBehaviour
     [SerializeField] GameObject Respawn;
 
 
+
     [SerializeField] public Transform Player;
     [HideInInspector] public Rigidbody2D rb;
 
     [Header("other.scrip")]
     EffectPowerUp ePU;
     UIManager UI;
+    GameManager GM;
 
-    
-    
+
+
     void Start()
     {
         ePU = FindObjectOfType<EffectPowerUp>();
         rb = GetComponent<Rigidbody2D>();
         UI = FindObjectOfType<UIManager>();
+        GM = FindObjectOfType<GameManager>();
     }
 
-   
+
     void Update()
     {
-        DeathPlayaer();
-        MyInput();
-        Shoot();
+        if (GM.gameStatus == GameManager.GameStatus.gameRunning)
+        {
+            DeathPlayaer();
+            MyInput();
+            Shoot();
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     private void MyInput()
@@ -57,15 +67,20 @@ public class MyPlayer : MonoBehaviour
 
     public void DeathPlayaer()
     {
-            if(hitCount == 1)
-            {
-                UI.Hpcount++;
-                gameObject.transform.position = Respawn.transform.position;
-                ePU.nonToccarmi = true;
-                hitCount--;
-            }
-         if(health == 0)
-                gameObject.SetActive(false);
+        if (hitCount == 1)
+        {
+            UI.Hpcount++;
+            gameObject.transform.position = Respawn.transform.position;
+            ePU.nonToccarmi = true;
+            hitCount--;
+        }
+        if (health == 0)
+        {
+            gameObject.SetActive(false);
+            UI.EndCanvas.SetActive(true);
+            GM.EndGame();
+        }
+
     }
 
 
@@ -74,7 +89,7 @@ public class MyPlayer : MonoBehaviour
         if (TimeShoot <= 1)
             TimeShoot += 1 * Time.deltaTime;
 
-        if (Input.GetButtonDown("Fire1") && TimeShoot >= 1)
+        if (Input.GetButtonDown("Fire1") && TimeShoot >= 1 || Input.GetKeyDown("j") && TimeShoot >= 1)
         {
             GameObject myBullet = Instantiate(Bullet);
             myBullet.transform.position = Fire.transform.position;
@@ -98,12 +113,12 @@ public class MyPlayer : MonoBehaviour
         //{
         //    charge = 0;
         //}
-            
+
     }
 
     public void JumpEnemy()
     {
         distancePlayer = gameObject.transform.position.x + transform.position.x;
-       
+
     }
 }

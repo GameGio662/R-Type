@@ -30,13 +30,16 @@ public class BulletEnemy : MonoBehaviour
         if (collision.gameObject.tag == "wall")
             Destroy(gameObject);
 
-        if (collision.CompareTag("Player") && ePU.nonToccarmi == false)
+        if (collision.CompareTag("Player"))
         {
-            mP.hitCount = 1;
-            mP.health -= 50;
+            if (ePU.nonToccarmi == false)
+            {
+                mP.hitCount = 1;
+                mP.health -= 50;
+            }
             Destroy(gameObject);
         }
     }
 
-    
+
 }

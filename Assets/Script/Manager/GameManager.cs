@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    UIManager UM;
+
+    public enum GameStatus
     {
-        
+        gamePaused,
+        gameRunning,
+        gameEnd,
+        gameStart,
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameStatus gameStatus = GameStatus.gameRunning;
+
+    private void Update()
     {
-        
+        if (UM == null)
+            UM = FindObjectOfType<UIManager>();
+
+        if (Input.GetKeyDown("escape") && gameStatus == GameStatus.gameRunning)
+        {
+            gameStatus = GameStatus.gamePaused;
+            UM.pauseMenu.SetActive(true);
+        }
+        else if (Input.GetKeyDown("escape") && gameStatus == GameStatus.gamePaused)
+        {
+            gameStatus = GameStatus.gameRunning;
+            UM.pauseMenu.SetActive(false);
+        }
+    }
+
+    public void EndGame()
+    {
+        gameStatus = GameStatus.gameEnd;
     }
 }

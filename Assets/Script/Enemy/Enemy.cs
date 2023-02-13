@@ -12,35 +12,35 @@ public class Enemy : MonoBehaviour
     private bool checkingGround, checkingWall;
     [SerializeField] Transform groundCheckPoint, wallCheckPoint;
     [SerializeField] LayerMask groundLayer;
-    
+
 
     [Header("jump")]
     [SerializeField] float jumpHaight;
     [SerializeField] Transform groundCheck;
     [SerializeField] Vector2 boxSize;
     private bool isGrounded;
-    
+
 
     [Header("Attack")]
     [SerializeField] Vector2 lineOfSite;
     [SerializeField] LayerMask PlayerLayer;
     private bool cannSeePlayer;
     private float time, timejump;
-   
+
 
     [Header("Shoot")]
     [SerializeField] GameObject BulletEnemy;
     [SerializeField] GameObject fire;
 
-    TimeManager tM;
     MyPlayer mP;
     UIManager UI;
     EffectPowerUp ePU;
+    GameManager GM;
     Rigidbody2D rb;
 
     private void Start()
     {
-        tM = FindObjectOfType<TimeManager>();
+        GM = FindObjectOfType<GameManager>();
         UI = FindObjectOfType<UIManager>();
         mP = FindObjectOfType<MyPlayer>();
         rb = GetComponent<Rigidbody2D>();
@@ -49,11 +49,13 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        Physics();
-        TimerShoot();
-        TimerJump();
-        Petrolling();
-        EnemyDespawn();
+        if (GM.gameStatus == GameManager.GameStatus.gameRunning)
+        {
+            Physics();
+            TimerShoot();
+            TimerJump();
+            Petrolling();
+        }
     }
 
     private void Physics()
@@ -83,10 +85,13 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && ePU.nonToccarmi == false)
+        if (collision.gameObject.tag == "Player")
         {
-            mP.hitCount = 1;
-            mP.health -= 50;
+            if (ePU.nonToccarmi == false)
+            {
+                mP.hitCount = 1;
+                mP.health -= 50;
+            }
             Destroy(gameObject);
         }
 
@@ -119,10 +124,10 @@ public class Enemy : MonoBehaviour
 
     private void TimerShoot()
     {
-        if (time <= 3)
+        if (time <= 1)
             time += 1 * Time.deltaTime;
 
-        if (time >= 3)
+        if (time >= 1)
         {
             if (cannSeePlayer)
             {
@@ -144,11 +149,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void EnemyDespawn()
-    {
-        if(tM.stopTime == true)
-        {
-            gameObject.SetActive(false);
-        }
-    }
+    //public void EnemyDespawn()
+    //{
+    //    if (tM.stopTime == true)
+    //    {
+    //        gameObject.SetActive(false);
+    //    }
+    //}
 }

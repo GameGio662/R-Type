@@ -4,36 +4,35 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    float cooldown = 50;
     public float time;
-   [HideInInspector] public bool stopTime = false;
+
+    GameManager GM;
+    UIManager UI;
 
     void Start()
     {
-        time = cooldown;
+        time = 50;
+        GM = FindObjectOfType<GameManager>();
+        UI = FindObjectOfType<UIManager>();
     }
 
 
     void Update()
     {
-        Timer();
+        if (GM.gameStatus == GameManager.GameStatus.gameRunning)
+            Timer();
     }
 
     private void Timer()
     {
-        if (stopTime == false)
-        {
             if (time > 0)
                 time -= 1 * Time.deltaTime;
 
             if (time <= 0)
             {
-                time = 0;
-                stopTime = true;
+                UI.LevelCanvas.SetActive(true);
+                GM.EndGame();
             }
-        }
-
-
     }
 
 }
