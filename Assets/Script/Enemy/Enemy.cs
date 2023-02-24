@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject BulletEnemy;
     [SerializeField] GameObject fire;
 
+    TimeManager tM;
     MyPlayer mP;
     UIManager UI;
     EffectPowerUp ePU;
@@ -45,6 +46,7 @@ public class Enemy : MonoBehaviour
         mP = FindObjectOfType<MyPlayer>();
         rb = GetComponent<Rigidbody2D>();
         ePU = FindObjectOfType<EffectPowerUp>();
+        tM = FindObjectOfType<TimeManager>();
     }
 
     private void Update()
@@ -55,6 +57,9 @@ public class Enemy : MonoBehaviour
             TimerShoot();
             TimerJump();
             Petrolling();
+            if (tM.endWave == true)
+                Destroy(gameObject);
+
         }
     }
 

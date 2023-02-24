@@ -16,15 +16,11 @@ public class Bullat : MonoBehaviour
     {
         if (collision.gameObject.tag == "wall")
             Destroy(gameObject);
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (collision.gameObject.tag == "wall")
-            Destroy(gameObject);
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "wall" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Shield")
             Destroy(gameObject);
     }
 }

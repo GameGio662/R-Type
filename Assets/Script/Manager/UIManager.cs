@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI Score;
     [SerializeField] TextMeshProUGUI ScoreToT;
     [SerializeField] TextMeshProUGUI Time;
+    [SerializeField] public TextMeshProUGUI TimerText;
     [SerializeField] public GameObject startCanvas;
     [SerializeField] public GameObject TutorialCanvas;
     [SerializeField] public GameObject pauseMenu;
@@ -43,6 +44,7 @@ public class UIManager : MonoBehaviour
         Score.text = enemyPunt.ToString("0000");
         ScoreToT.text = enemyPunt.ToString("0000");
         Time.text = tM.time.ToString("00");
+        TimerText.text = tM.timeNextWave.ToString("00");
 
     }
 

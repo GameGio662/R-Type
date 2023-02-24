@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    public float time;
-    bool nextWave = false;
+    public float time, timeNextWave;
+    bool Wave1, Wave2 = false;
+    bool timeStop;
+    [HideInInspector] public bool endWave;
 
     [SerializeField] GameObject spawn1;
+    [SerializeField] GameObject spawn2;
+    [SerializeField] GameObject TextWave;
+    [SerializeField] GameObject TimerText;
+
 
     GameManager GM;
     UIManager UI;
@@ -24,23 +30,32 @@ public class TimeManager : MonoBehaviour
     {
         if (GM.gameStatus == GameManager.GameStatus.gameRunning)
         {
-            Timer();
+            TimerWave1();
             TimerForNextWave();
+            TimerWave2();
         }
     }
 
-    private void Timer()
+    private void TimerWave1()
     {
-        if (nextWave == false)
+        if (Wave1 == false)
         {
             if (time > 0)
                 time -= 1 * Time.deltaTime;
-            if (time <= 5)
+
+            if (time <= 10)
+            {
                 spawn1.SetActive(false);
+                endWave = true;
+            }
+
             if (time <= 0)
             {
-                nextWave = true;
-                time = 15;
+                Wave1 = true;
+                timeStop= true;
+                timeNextWave = 15;
+                TextWave.SetActive(true);
+                TimerText.SetActive(true);
             }
         }
 
@@ -48,16 +63,42 @@ public class TimeManager : MonoBehaviour
 
     private void TimerForNextWave()
     {
-        if (nextWave == true && time > 0)
+        if (timeStop == true)
         {
-            time -= 1 * Time.deltaTime;
-            if (time <= 0)
+            timeNextWave -= 1 * Time.deltaTime;
+            if (timeNextWave <= 0)
             {
-
+                TextWave.SetActive(false);
+                TimerText.SetActive(false);
+                time = 65;
+                Wave2 = true;
+                timeStop = false;
             }
         }
-
-
     }
 
+    private void TimerWave2()
+    {
+        if (Wave2 == true)
+        {
+            time -= 1 * Time.deltaTime;
+            Debug.Log(time);
+            spawn2.SetActive(true);
+            endWave = false;
+
+
+            if (time <= 10)
+            {
+                spawn2.SetActive(false);
+                endWave = true;
+            }
+
+            if (time <= 0)
+            {
+                TextWave.SetActive(true);
+                Wave2 = false;
+                timeNextWave = 15;
+            }
+        }
+    }
 }
