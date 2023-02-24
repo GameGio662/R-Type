@@ -5,8 +5,9 @@ using UnityEngine;
 public class EffectPowerUp : MonoBehaviour
 {
     float timer;
-    public bool nonToccarmi = false;
-    [SerializeField] GameObject Invulnerabilità;
+    [HideInInspector] public bool nonToccarmi = false;
+
+    [SerializeField] public GameObject Invulnerabilità;
 
     private void Update()
     {
