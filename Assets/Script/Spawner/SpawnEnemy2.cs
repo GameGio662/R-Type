@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,6 +39,6 @@ public class SpawnEnemy2 : MonoBehaviour
 
     private Vector2 SpawnPosition()
     {
-        return new Vector2(transform.position.x, UnityEngine.Random.Range(Uplimite, Downlimite));
+        return new Vector2(transform.position.x, Random.Range(Uplimite, Downlimite));
     }
 }

@@ -47,7 +47,7 @@ public class MyPlayer : MonoBehaviour
     {
         if (GM.gameStatus == GameManager.GameStatus.gameRunning)
         {
-            DeathPlayaer();
+           // DeathPlayaer();
             MyInput();
             Shoot();
         }
@@ -96,24 +96,6 @@ public class MyPlayer : MonoBehaviour
             myBullet.transform.rotation = Fire.transform.rotation;
             TimeShoot = 0;
         }
-
-        //if (Input.GetButton("Fire2") && charge <= 3)
-        //{
-        //    charge += 1 * Time.deltaTime;
-        //    Debug.Log(charge);
-        //    if (charge >= 3)
-        //    {
-        //        GameObject myBullet = Instantiate(bullet);
-        //        myBullet.transform.position = gameObject.transform.position;
-        //        myBullet.transform.rotation = gameObject.transform.rotation;
-        //        charge = 0;
-        //    }
-        //}
-        //else if (charge < 3)
-        //{
-        //    charge = 0;
-        //}
-
     }
 
     public void JumpEnemy()
