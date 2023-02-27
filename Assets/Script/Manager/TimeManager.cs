@@ -47,7 +47,7 @@ public class TimeManager : MonoBehaviour
             if (time > 0)
                 time -= 1 * Time.deltaTime;
 
-            if (time <= 10)
+            if (time <= 15)
             {
                 spawn1.SetActive(false);
                 endWave = true;
@@ -123,7 +123,7 @@ public class TimeManager : MonoBehaviour
                 endWave = false;
 
 
-                if (time <= 10)
+                if (time <= 15)
                 {
                     spawn3.SetActive(false);
                     endWave = true;

@@ -51,6 +51,7 @@ public class Enemy3Spawn : MonoBehaviour
             GameObject trappola = Instantiate(Trappola);
             trappola.transform.position = SpawnPositionUp();
             timers = 0;
+            Debug.Log(trappola.transform.position);
         }
     }
 
@@ -61,6 +62,6 @@ public class Enemy3Spawn : MonoBehaviour
 
     private Vector2 SpawnPositionUp()
     {
-        return new Vector2(Player.transform.position.x, Random.Range(Leftlimite, Rightlimite) - 150);
+        return new Vector2(Player.transform.position.x, Random.Range(Leftlimite, Rightlimite) - 153);
     }
 }
