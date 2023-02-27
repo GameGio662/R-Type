@@ -29,10 +29,7 @@ public class Enemy2 : MonoBehaviour
     {
         if (GM.gameStatus == GameManager.GameStatus.gameRunning)
         {
-            transform.Translate(new Vector2(-0.5f * Time.deltaTime, 0));
             Shoot();
-            if (tM.endWave == true)
-                Destroy(gameObject);
             VitaRimanente();
         }
     }
@@ -48,11 +45,17 @@ public class Enemy2 : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        if (collision.gameObject.tag == "Boom" || collision.gameObject.tag == "wall")
+        if (collision.gameObject.tag == "wall")
             Destroy(gameObject);
         if (collision.gameObject.tag == "Bullet")
             vita--;
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Boom"))
+            Destroy(gameObject);
     }
 
     public void Shoot()

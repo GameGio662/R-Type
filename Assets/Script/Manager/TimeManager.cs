@@ -6,6 +6,7 @@ public class TimeManager : MonoBehaviour
 {
     public float time, timeNextWave;
     bool Wave1, Wave2, Wave3, timeStop;
+    public bool hp;
     [HideInInspector] public bool endWave;
 
     [SerializeField] GameObject spawn1;
@@ -13,6 +14,8 @@ public class TimeManager : MonoBehaviour
     [SerializeField] GameObject spawn3;
     [SerializeField] GameObject TextWave;
     [SerializeField] GameObject TimerText;
+    [SerializeField] GameObject AvvisoText;
+    [SerializeField] GameObject End;
 
 
     GameManager GM;
@@ -28,8 +31,8 @@ public class TimeManager : MonoBehaviour
     {
         if (GM.gameStatus == GameManager.GameStatus.gameRunning)
         {
-            TimerWave1();
             TimerForNextWave();
+            TimerWave1();
             TimerWave2();
             TimerWave3();
         }
@@ -53,6 +56,7 @@ public class TimeManager : MonoBehaviour
             {
                 Wave1 = true;
                 timeStop = true;
+                timeNextWave = 15;
             }
         }
 
@@ -62,13 +66,14 @@ public class TimeManager : MonoBehaviour
     {
         if (timeStop == true)
         {
-            timeNextWave = 15;
+            hp = true;
             timeNextWave -= 1 * Time.deltaTime;
             TextWave.SetActive(true);
             TimerText.SetActive(true);
 
             if (timeNextWave <= 0)
             {
+                hp = false;
                 TimerText.SetActive(false);
                 TextWave.SetActive(false);
                 timeStop = false;
@@ -91,13 +96,14 @@ public class TimeManager : MonoBehaviour
                 if (time <= 10)
                 {
                     spawn2.SetActive(false);
-                    endWave = true;
                 }
 
                 if (time <= 0)
                 {
                     Wave2 = true;
                     timeStop = true;
+                    timeNextWave = 15;
+                    AvvisoText.SetActive(true);
                 }
             }
         }
@@ -111,17 +117,20 @@ public class TimeManager : MonoBehaviour
             {
                 time -= 1 * Time.deltaTime;
                 spawn3.SetActive(true);
+                AvvisoText.SetActive(false);
                 endWave = false;
 
 
                 if (time <= 10)
                 {
-
+                    spawn3.SetActive(false);
+                    endWave = true;
                 }
 
                 if (time <= 0)
                 {
                     GM.EndGame();
+                    End.SetActive(true);
                 }
             }
         }

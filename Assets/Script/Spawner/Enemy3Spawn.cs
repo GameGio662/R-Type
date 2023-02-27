@@ -61,6 +61,6 @@ public class Enemy3Spawn : MonoBehaviour
 
     private Vector2 SpawnPositionUp()
     {
-        return new Vector2(Player.transform.position.x, Random.Range(Leftlimite, Rightlimite) + 5);
+        return new Vector2(Player.transform.position.x, Random.Range(Leftlimite, Rightlimite));
     }
 }

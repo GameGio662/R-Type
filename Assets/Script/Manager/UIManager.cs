@@ -41,11 +41,23 @@ public class UIManager : MonoBehaviour
         else if (Hpcount == 3)
             Hp1.SetActive(false);
 
+        RecuperoVita();
+
         Score.text = enemyPunt.ToString("0000");
         ScoreToT.text = enemyPunt.ToString("0000");
         Time.text = tM.time.ToString("00");
         TimerText.text = tM.timeNextWave.ToString("00");
 
+    }
+
+    private void RecuperoVita()
+    {
+        if(tM.hp == true)
+        {
+            Hp2.SetActive(true);
+            Hp3.SetActive(true);
+            Hpcount = 0;
+        }
     }
 
     public void Play()

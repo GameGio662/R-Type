@@ -47,7 +47,7 @@ public class MyPlayer : MonoBehaviour
     {
         if (GM.gameStatus == GameManager.GameStatus.gameRunning)
         {
-           // DeathPlayaer();
+            //DeathPlayaer();
             MyInput();
             Shoot();
         }

@@ -7,6 +7,7 @@ public class Enemy3 : MonoBehaviour
 {
     float time, timeMove;
     bool stop = true;
+    int random;
 
     [SerializeField] GameObject BulletEnemy, fire;
 
@@ -16,6 +17,7 @@ public class Enemy3 : MonoBehaviour
 
     void Start()
     {
+        random = Random.Range(4, 7);
         timeMove = 1;
         ePU = FindObjectOfType<EffectPowerUp>();
         mP = FindObjectOfType<MyPlayer>();
@@ -28,7 +30,6 @@ public class Enemy3 : MonoBehaviour
         {
             Shoot();
             MoveEnemy3();
-            Debug.Log(timeMove);
         }
     }
 
@@ -43,16 +44,20 @@ public class Enemy3 : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        if (collision.gameObject.tag == "Boom")
-            Destroy(gameObject);
-        if (collision.gameObject.tag == "Bullet")
+            if (collision.gameObject.tag == "Bullet")
+                Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Boom"))
             Destroy(gameObject);
     }
 
     private void Shoot()
     {
         time += 1 * Time.deltaTime;
-        if (time >= 7)
+        if (time >= random)
         {
             GameObject myBullet = Instantiate(BulletEnemy);
             myBullet.transform.position = fire.transform.position;

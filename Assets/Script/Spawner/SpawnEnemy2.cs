@@ -14,7 +14,7 @@ public class SpawnEnemy2 : MonoBehaviour
 
     void Start()
     {
-        time = 5f;
+        time = 10f;
         Uplimite = Up.transform.position.y;
         Downlimite = Down.transform.position.y;
         GM = FindObjectOfType<GameManager>();
@@ -29,7 +29,7 @@ public class SpawnEnemy2 : MonoBehaviour
     {
         time += 1 * Time.deltaTime;
 
-        if(time >= 5f)
+        if(time >= 10f)
         {
             GameObject enemy2 = Instantiate(Enemy2);
             enemy2.transform.position = SpawnPosition();
