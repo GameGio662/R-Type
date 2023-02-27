@@ -93,7 +93,7 @@ public class TimeManager : MonoBehaviour
                 endWave = false;
 
 
-                if (time <= 10)
+                if (time <= 15)
                 {
                     spawn2.SetActive(false);
                 }

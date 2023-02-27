@@ -13,6 +13,7 @@ public class Enemy3 : MonoBehaviour
 
     EffectPowerUp ePU;
     MyPlayer mP;
+    TimeManager tM;
     GameManager GM;
 
     void Start()
@@ -21,6 +22,7 @@ public class Enemy3 : MonoBehaviour
         timeMove = 1;
         ePU = FindObjectOfType<EffectPowerUp>();
         mP = FindObjectOfType<MyPlayer>();
+        tM= FindObjectOfType<TimeManager>();
         GM = FindObjectOfType<GameManager>();
     }
 
@@ -30,6 +32,8 @@ public class Enemy3 : MonoBehaviour
         {
             Shoot();
             MoveEnemy3();
+            if (tM.endWave == true)
+                Destroy(gameObject);
         }
     }
 

@@ -61,7 +61,7 @@ public class Enemy2 : MonoBehaviour
     public void Shoot()
     {
         time += 1 * Time.deltaTime;
-        if (time >= 2.5)
+        if (time >= 2)
         {
             GameObject myBullet = Instantiate(BulletEnemy);
             myBullet.transform.position = fire.transform.position;

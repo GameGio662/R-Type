@@ -14,7 +14,7 @@ public class Enemy3Spawn : MonoBehaviour
 
     void Start()
     {
-        random = Random.Range(7, 9);
+        random = Random.Range(1, 9);
         Uplimite = Up.transform.position.y;
         Downlimite = Down.transform.position.y;
         Leftlimite = Down.transform.position.x;
@@ -34,7 +34,7 @@ public class Enemy3Spawn : MonoBehaviour
     {
         time += 1 * Time.deltaTime;
 
-        if (time >= 8)
+        if (time >= 5)
         {
             GameObject enemy3 = Instantiate(Enemy3);
             enemy3.transform.position = SpawnPositionFront();
@@ -61,6 +61,6 @@ public class Enemy3Spawn : MonoBehaviour
 
     private Vector2 SpawnPositionUp()
     {
-        return new Vector2(Player.transform.position.x, Random.Range(Leftlimite, Rightlimite));
+        return new Vector2(Player.transform.position.x, Random.Range(Leftlimite, Rightlimite) - 150);
     }
 }
