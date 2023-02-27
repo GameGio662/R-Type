@@ -12,7 +12,6 @@ public class MyPlayer : MonoBehaviour
     [Header("Comandi")]
     float horizontalInput, verticalInput;
     public float speedMovement;
-    //float charge;
 
     [Header("Timer")]
     private float TimeShoot;

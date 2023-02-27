@@ -17,13 +17,14 @@ public class TimeManager : MonoBehaviour
     [SerializeField] GameObject AvvisoText;
     [SerializeField] GameObject End;
 
-
+    MyPlayer mP;
     GameManager GM;
 
     void Start()
     {
         time = 65;
         GM = FindObjectOfType<GameManager>();
+        mP = FindObjectOfType<MyPlayer>();
     }
 
 
@@ -66,6 +67,7 @@ public class TimeManager : MonoBehaviour
     {
         if (timeStop == true)
         {
+            mP.health = 150;
             hp = true;
             timeNextWave -= 1 * Time.deltaTime;
             TextWave.SetActive(true);
