@@ -6,7 +6,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class BulletEnemy : MonoBehaviour
 {
     MyPlayer mP;
-    public float speed = 10;
+    public float speed = 3.5f;
     EffectPowerUp ePU;
     Rigidbody2D rb;
 

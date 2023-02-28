@@ -7,7 +7,6 @@ public class Enemy3 : MonoBehaviour
 {
     float time, timeMove;
     bool stop = true;
-    int random;
 
     [SerializeField] GameObject BulletEnemy, fire;
 
@@ -18,7 +17,6 @@ public class Enemy3 : MonoBehaviour
 
     void Start()
     {
-        random = Random.Range(4, 7);
         timeMove = 1;
         ePU = FindObjectOfType<EffectPowerUp>();
         mP = FindObjectOfType<MyPlayer>();
@@ -61,7 +59,7 @@ public class Enemy3 : MonoBehaviour
     private void Shoot()
     {
         time += 1 * Time.deltaTime;
-        if (time >= random)
+        if (time >= 1.1f)
         {
             GameObject myBullet = Instantiate(BulletEnemy);
             myBullet.transform.position = fire.transform.position;

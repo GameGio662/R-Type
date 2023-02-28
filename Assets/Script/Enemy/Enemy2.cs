@@ -31,6 +31,8 @@ public class Enemy2 : MonoBehaviour
         {
             Shoot();
             VitaRimanente();
+            if (tM.endWave == true)
+                Destroy(gameObject);
         }
     }
 

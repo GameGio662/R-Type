@@ -8,13 +8,12 @@ public class Enemy3Spawn : MonoBehaviour
     [SerializeField] GameObject Trappola;
     [SerializeField] GameObject Player;
     [SerializeField] Transform Up, Down, left, right;
-    float Uplimite, Downlimite, Leftlimite, Rightlimite, random, time, timers;
+    float Uplimite, Downlimite, Leftlimite, Rightlimite, time, timers;
 
     GameManager GM;
 
     void Start()
     {
-        random = Random.Range(1, 9);
         Uplimite = Up.transform.position.y;
         Downlimite = Down.transform.position.y;
         Leftlimite = Down.transform.position.x;
@@ -46,7 +45,7 @@ public class Enemy3Spawn : MonoBehaviour
     {
         timers += 1 * Time.deltaTime;
 
-        if (timers >= random)
+        if (timers >= 1.1f)
         {
             GameObject trappola = Instantiate(Trappola);
             trappola.transform.position = SpawnPositionUp();

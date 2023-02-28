@@ -273,7 +273,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 32768
-  jumpHaight: 15
+  jumpHaight: 10
   groundCheck: {fileID: 3875637594975977692}
   boxSize: {x: 1.04, y: 0.22}
   lineOfSite: {x: 15.4, y: 8.94}

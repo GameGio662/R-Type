@@ -153,12 +153,4 @@ public class Enemy : MonoBehaviour
             timejump = 0;
         }
     }
-
-    //public void EnemyDespawn()
-    //{
-    //    if (tM.stopTime == true)
-    //    {
-    //        gameObject.SetActive(false);
-    //    }
-    //}
 }
